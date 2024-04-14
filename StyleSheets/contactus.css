@@ -1,0 +1,16 @@
+.contact-main{
+    position: relative;
+    text-align: center;
+}
+
+.contact-text{
+    
+    left: 25%;
+    font-style: oblique;
+    font-weight: 0;
+    font-size: 25px;
+}
+
+.contact-email{
+    position: relative;
+}

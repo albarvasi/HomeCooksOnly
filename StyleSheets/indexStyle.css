@@ -8,9 +8,36 @@
 }
 .header{
     position: relative;
-    text-align: center;
+    text-align:left;
     background-color: bisque;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: oblique;
     font-size: 100px;
+}
+
+.Home{
+    left: 10px;
+}
+.Login{
+    position: relative;
+    left: 10px;
+}
+.Sign-Up{
+    position: relative;
+    left: 30px;
+}
+.Contactus{
+    position: relative;
+    left: 40px;
+}
+
+.home-welcome{
+    position: relative;
+    text-align: center;
+}
+
+.welcome-text{
+    font-family: cursive;
+    font-size: 25px;
+    font-style:italic
 }

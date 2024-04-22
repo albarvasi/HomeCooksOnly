@@ -10,16 +10,34 @@
 
 .login-email{
     font-style: italic;
-    font-weight: 800;
+    /* font-weight: 800; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .login-pass{
     font-style: italic;
-    font-weight: 800;
+    /* font-weight: 800; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .login-emailpass-div{
+    position: relative;
     text-align: center;
+}
+.login-pass-div{
+    position: relative;
+    right: 14px;
+    text-align: center;
+}
+
+.login-button-div
+{
+    position: relative;
+    text-align: center;
+}
+
+.login-button-div >.cancel-input
+{
+    position: relative;
+    left: 20px;
 }

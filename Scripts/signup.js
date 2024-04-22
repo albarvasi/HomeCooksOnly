@@ -7,7 +7,7 @@ function clickFunction(){
 
     if(firstname === ""|| lastname === ""|| email === ""|| password === ""|| confirmpass === "")
     {
-        alert("You missed a field! Please enter valid values!!!");
+        alert("All or some required fields are empty! Please enter valid values!!!");
     }
     else if(password !== confirmpass)
     {

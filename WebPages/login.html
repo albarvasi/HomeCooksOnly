@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../StyleSheets/loginStyle.css">
     <link rel="stylesheet" href="../StyleSheets/contactus.css">
     <link rel="stylesheet" href="../StyleSheets/signup.css">
+    <script src="../Scripts/login.js"></script>
 </head>
 <body>
     <div class = "mainheader">
@@ -21,16 +22,16 @@
     </div> 
     <div>
         <p class ="login-email">Email :
-        <input class = "email" placeholder="Email or User Name"></input>
+        <input class = "email" placeholder="Email or User Name" required></input>
         </p>
     </div>
     <div>
         <p class = "login-pass">Password :
-            <input type="password" class = "password" placeholder="Correct Password"></input>
+            <input type="password" class = "password" placeholder="Correct Password" required></input>
         </p>
     </div>
     <div>
-        <button class="submit" type="submit">Login</button>
+        <button class="submit" type="submit" onclick="onlogin()">Login</button>
     </div>
 </body>
 </html>

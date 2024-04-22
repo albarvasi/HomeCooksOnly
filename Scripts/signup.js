@@ -9,11 +9,3 @@ function clearFields(){
         input.value = "";
     });
 };
-
-// function phoneNumber(){
-//     var phoneNumber = document.getElementsByClassName("phone-input");
-//     if(phoneNumber === "+1")
-//     {
-//         alert("It is an American Phone Number");
-//     }
-// };

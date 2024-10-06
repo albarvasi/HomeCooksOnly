@@ -27,27 +27,27 @@
     <div class="signup-form1">
     <div class = "name-div">
         <p class="firstName-text"> 
-            <input class = "firstName-input" placeholder="First Name">
+            <input class = "firstName-input" placeholder="First Name" required>
         </p>
     </div>
     <div class = "name-div">
         <p class="lastName-text">
-            <input class = "lastName-input" placeholder="Last Name">
+            <input class = "lastName-input" placeholder="Last Name" required>
         </p>
     </div>
     <div class = "email-div">
         <p class="email-text">
-            <input class = "email-input" placeholder="Email" required>
+            <input class = "email-input" placeholder="Email" type="email" required>
         </p>
     </div>
     <div class = "password-div">
         <p class="password-text">
-            <input type="password" class = "Password-input" placeholder="Password">
+            <input type="password" class = "Password-input" placeholder="Password" minlength="5" required>
         </p>
     </div>
     <div class = "confirmpass-div">
         <p class="confirmpass-text">
-            <input type="password" class = "confirmpass-input" placeholder="Confirm Password" required>
+            <input type="password" class = "confirmpass-input" placeholder="Confirm Password" minlength="5" required>
         </p>
     </div>
     <div class = "phone-div">
@@ -59,6 +59,7 @@
         <p class="submit-text">
             <button type="submit" class = "submit-input"  onclick="clickFunction()" aria-placeholder="Submit">Submit</button>
             <button type="reset" class="cancel-input" onclick="clearFields()" aria-placeholder="Cancel">Cancel</button>
+            <p id="error-message" class="error" style="display:none;"></p>
         </p>
     </div>
     </div>

@@ -11,6 +11,10 @@ function clickFunction(){
     {
         alert("All or some required fields are empty! Please enter valid values!!!");
     }
+    else if(!emailPattern.test(email))
+    {
+        alert("Email format incorrect! Please enter a valid email address (e.g., abc@abc.com).")
+    }
     else if(password !== confirmpass)
     {
         alert("Passwords do not match! Please check and re-enter valid values");
@@ -19,11 +23,6 @@ function clickFunction(){
     {
 
         alert("Password length less than 5. Add more characters");
-
-    }
-    else if(!emailPattern.test(email))
-    {
-        alert("Email format incorrect! Please enter a valid email address (e.g., abc@abc.com).")
     }
     else
     {

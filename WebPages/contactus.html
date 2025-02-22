@@ -1,31 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OnlyCooks - Contact Us</title>
-    <link rel="stylesheet" href="../StyleSheets/indexStyle.css">
-    <link rel="stylesheet" href="../StyleSheets/loginStyle.css">
-    <link rel="stylesheet" href="../StyleSheets/contactus.css">
-    <link rel="stylesheet" href="../StyleSheets/signup.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OnlyCooks - Contact Us</title>
+  <link rel="stylesheet" href="../StyleSheets/indexStyle.css" />
+  <link rel="stylesheet" href="../StyleSheets/loginStyle.css" />
+  <link rel="stylesheet" href="../StyleSheets/contactus.css" />
+  <link rel="stylesheet" href="../StyleSheets/signup.css" />
+  <style>
+    /* Modal container */   
+    .modal {
+      display: none; /* hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    /* Modal content box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 5px;
+      position: relative;
+    }
+    /* Close button (X in top right) */
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+    /* Textarea styling */
+    #emailMessage {
+      width: 100%;
+      height: 150px;
+      resize: vertical;
+      margin-bottom: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    /* Button container */
+    .button-container {
+      text-align: right;
+    }
+    .button-container button {
+      margin-left: 5px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class = "mainheader">
-        <h1 class = "header">OnlyCooks</h1>
-</div>
-    <div class= "headerOptions">
-        <a class="Home" href="../index.html">Home</a>
-        <a class="Login" href="./login.html">Login </a> 
-        <a class="Sign-Up" href="./signup.html">Sign-Up</a> 
-        <a class="Contactus" href="./contactus.html">Contact Us</a>
+  <div class="mainheader">
+    <h1 class="header">OnlyCooks</h1>
+  </div>
+  <div class="headerOptions">
+    <a class="Home" href="../index.html">Home</a>
+    <a class="Login" href="./login.html">Login</a>
+    <a class="Sign-Up" href="./signup.html">Sign-Up</a>
+    <a class="Contactus" href="./contactus.html">Contact Us</a>
+  </div>
+  <hr />
+  <div class="contact-main">
+    <p class="contact-text">
+      Welcome to the Contact Us page.
+      In case of any queries, questions or concerns - 
+      Please email us on below:
+    </p>
+    <!-- Use an id so we can bind our event -->
+    <a class="contact-email" href="mailto:albarvasi21@gmail.com" id="emailLink">Email</a>
+  </div>
+
+  <!-- Modal for sending email -->
+  <div id="emailModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="emailForm">
+        <label for="emailMessage">Message (max 2000 words):</label>
+        <textarea id="emailMessage" placeholder="Type your message here..."></textarea>
+        <br />
+        <label for="attachment">Attachment:</label>
+        <input type="file" id="attachment" multiple />
+        <br /><br />
+        <div class="button-container">
+          <button type="button" id="sendBtn">Send</button>
+          <button type="reset" id="resetBtn">Reset</button>
+          <button type="button" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
     </div>
-    <hr />
-    <div class="contact-main">
-        <p class = "contact-text"> Welcome to the Contact Us page.
-            In case of any queries, questions or concerns - 
-            Please email us on below:
-        </p>
-        <a class="contact-email" href= mailto:"albarvasi21@gmail.com">Email</a>
-    </div>
+  </div>
+
+  <script>
+    // Get modal and elements
+    const modal = document.getElementById("emailModal");
+    const emailLink = document.getElementById("emailLink");
+    const closeBtn = document.getElementsByClassName("close")[0];
+    const cancelBtn = document.getElementById("cancelBtn");
+    const sendBtn = document.getElementById("sendBtn");
+    const emailForm = document.getElementById("emailForm");
+    const emailMessage = document.getElementById("emailMessage");
+    const attachmentInput = document.getElementById("attachment");
+
+    // Open modal on clicking the email link
+    emailLink.addEventListener("click", function(e) {
+      e.preventDefault(); // prevent default mailto behavior
+      modal.style.display = "block";
+    });
+
+    // Close modal on clicking the "X" or Cancel button
+    closeBtn.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+    cancelBtn.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+
+    // Reset button functionality (HTML reset type clears form automatically)
+    // Optionally, you can also reset file input manually if needed:
+    emailForm.addEventListener("reset", function() {
+      // This will clear text area and file input by default.
+      // Additional logic can be added here if needed.
+    });
+
+    // Send button: validate word count and send email via AJAX
+    sendBtn.addEventListener("click", function() {
+      const messageText = emailMessage.value.trim();
+      // Split the message by whitespace to count words (ignores multiple spaces)
+      const wordCount = messageText ? messageText.split(/\s+/).length : 0;
+
+      if (wordCount > 2000) {
+        alert("Your message exceeds the 2000 word limit. Please shorten your message.");
+        return;
+      }
+      
+      // Gather form data using FormData
+      const formData = new FormData();
+      formData.append("message", messageText);
+      formData.append("recipient", "albarvasi21@gmail.com");
+      
+      // Add selected files to the form data
+      const files = attachmentInput.files;
+      for (let i = 0; i < files.length; i++) {
+        formData.append("attachments[]", files[i]);
+      }
+      
+      // Replace the URL below with your server-side script that handles sending email
+      fetch("send_email.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.text())
+      .then(result => {
+        alert("Email sent successfully!");
+        emailForm.reset(); // Clear form inputs
+        modal.style.display = "none"; // Close modal
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("There was an error sending your email. Please try again later.");
+      });
+    });
+
+    // Optional: Close modal when clicking outside of modal content
+    window.addEventListener("click", function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
